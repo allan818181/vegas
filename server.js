@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 const PORT = process.env.PORT || 3000;
-const MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+const MODEL = process.env.GEMINI_MODEL || 'gemini-flash-latest';
 const API_KEY = process.env.GEMINI_API_KEY;
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`;
 
@@ -172,14 +172,15 @@ async function runAgentTurn(messages) {
       return convo; // model gave a final text reply
     }
 
-    // Execute each requested tool call, then feed results back
+    // Execute each requested tool call, then feed results back.
+    // Include the call's id when present so parallel tool calls line up correctly.
     const responseParts = functionCalls.map(fc => {
-      const { name, args } = fc.functionCall;
+      const { name, args, id } = fc.functionCall;
       const fn = TOOL_IMPL[name];
       let result;
       try { result = fn ? fn(args || {}) : { error: `Unknown tool ${name}` }; }
       catch (e) { result = { error: e.message }; }
-      return { functionResponse: { name, response: { result } } };
+      return { functionResponse: { id, name, response: { result } } };
     });
     convo.push({ role: 'user', parts: responseParts });
   }
