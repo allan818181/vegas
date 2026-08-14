@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vegas Luxury Hotel</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">Vegas Luxury Hotel</div>
+  <div class="tagline">Premium Suites — Dar es Salaam</div>
+</header>
+
+<main class="site-mock">
+  <h1>Find your suite</h1>
+  <p>This is a placeholder page standing in for vegashotelonline.com. Use the chat bubble in the corner to talk to the real AI concierge — ask about suites, prices, or amenities, or start a reservation request.</p>
+  <div class="room-grid" id="roomGrid">Loading suites…</div>
+</main>
+
+<!-- Chat widget -->
+<div id="chatBubble" class="chat-bubble">💬</div>
+<div id="chatWindow" class="chat-window hidden">
+  <div class="chat-header">
+    <span>Vegas Luxury Concierge</span>
+    <button id="closeChat">✕</button>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="msg bot">Welcome to Vegas Luxury Hotel — how can I help with your stay in Dar es Salaam?</div>
+  </div>
+  <div class="chat-input-row">
+    <input id="chatInput" type="text" placeholder="Type a message…" />
+    <button id="sendBtn">Send</button>
+  </div>
+</div>
+
+<script src="widget.js"></script>
+</body>
+</html>

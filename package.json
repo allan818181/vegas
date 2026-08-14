@@ -1,0 +1,17 @@
+{
+  "name": "booking-agent-demo",
+  "version": "1.0.0",
+  "description": "Standalone demo: AI chat agent that searches rooms, answers policy questions, and places mock bookings. For testing/trust-building before real site integration.",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "dotenv": "^16.4.5"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

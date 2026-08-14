@@ -1,0 +1,17 @@
+{
+  "property": "Vegas Luxury Hotel, Mlimani City Round About, Sinza A 168, Behind Mwenge Tower, Dar es Salaam, Tanzania",
+  "stars": "3-star",
+  "hours": "Open 24/7, 24-hour reservation desk",
+  "contact": {
+    "phone_whatsapp": "+255 710 223344",
+    "wechat": "+8 613 711 598 931",
+    "email": "vegasluxuryhotel@gmail.com"
+  },
+  "amenities": [
+    "Car Parking", "Super Luxury Bed", "24hrs Free WiFi", "24hrs Hot/Cold Water",
+    "Air Conditioned Rooms", "Wide Space Rooms with Sofa", "Rooms with Jacuzzi (select suites)",
+    "Mini Fridge/Mini Bar", "Airport/Bus Pick Up", "Free Breakfast", "Smart TV with Netflix"
+  ],
+  "cancellation": "Not yet published on the live site as of 2026-08-14 — do not invent terms. Tell the guest you'll confirm exact cancellation terms with the team via WhatsApp/phone/email.",
+  "booking_flow": "The live site requires guests to sign in on vegashotelonline.com to complete a 'Reserve Suite' booking — there is no public booking-write API yet. Treat AI-assisted bookings as reservation requests/leads for staff follow-up, not confirmed bookings, until real backend access exists."
+}
