@@ -1,83 +1,37 @@
-# Vegas Luxury Hotel — AI Concierge (Real Content)
+<h1 align="center">Vegas Hotel AI Concierge</h1>
 
-Same working chat agent as the Cowork demo, now running as a standalone app
-powered by Google Gemini's free API tier (no billing required), and grounded
-in real data pulled from vegashotelonline.com (10 real suites, real prices in
-Tsh, real hotel info). This is the version being deployed to Render.
+<p align="center"><b>An AI chat concierge for a real Dar es Salaam hotel, grounded in its actual suites, prices and policies.</b></p>
 
-Booking still isn't a live write — the real site requires guest sign-in to finalize
-a reservation, and there's no public booking API yet. So instead of faking a
-confirmation, the agent captures a **reservation request (lead)**: suite, dates,
-price, guest name and contact — and logs it (currently to the server console via
-`notifyStaff()` in `server.js`, see step 4 below for making that real).
+<p align="center">![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black) ![Node.js](https://img.shields.io/badge/Node.js-339933?logo=nodedotjs&logoColor=white) ![Express](https://img.shields.io/badge/Express-000000?logo=express&logoColor=white) ![Gemini API](https://img.shields.io/badge/Gemini%20API-8E75B2?logo=googlegemini&logoColor=white)</p>
 
-## 1. Get a free Gemini API key
+## Overview
 
-aistudio.google.com/apikey → sign in with a Google account → Create API key. No credit card needed.
+AI hotel concierge chat widget (Node.js + Express + Google Gemini) grounded in real suite, price and policy data; captures reservation requests as staff leads.
 
-## 2. Run it
+## Features
+
+- Embeddable chat widget (`public/widget.js`) for the hotel website
+- Answers grounded in real data: 10 suites with prices in TSh and hotel policies (`data/*.json`), so it does not invent facts
+- Captures reservation requests (suite, dates, guest contact) as leads for staff instead of faking bookings
+- Runs on Google Gemini's free API tier; API key kept in `.env`
+
+## Tech stack
+
+JavaScript · Node.js · Express · Gemini API
+
+## Getting started
 
 ```bash
-cd booking-agent-demo
 npm install
-cp .env.example .env
+echo "GEMINI_API_KEY=your-key" > .env   # free key: aistudio.google.com/apikey
+node server.js                         # http://localhost:3000
 ```
 
-Edit `.env`:
-```
-GEMINI_API_KEY=your-real-key-here
-```
+## Project structure
 
-```bash
-npm start
-```
+`server.js` Express API + Gemini calls · `data/` rooms and policies · `public/` widget and demo page
 
-Open http://localhost:3000 — same chat widget, same reasoning quality you saw in
-the Cowork demo, now running on your own infrastructure with your own key.
+---
 
-Try: "Do you have a Double Deluxe under 100,000 Tsh?", "What amenities come with
-Suite 101?", "Can I book Suite 206 for 3 nights starting September 5th?"
-
-See captured reservation requests at http://localhost:3000/api/leads
-
-## 3. Get this onto the real site
-
-1. **Embed the widget.** Copy `public/widget.js` + `public/style.css`'s chat
-   widget block, and the chat bubble/window markup from `public/index.html`,
-   into the real site's codebase (or serve them from your backend and add one
-   `<script src="https://your-backend.com/widget.js"></script>` tag to every
-   page, same pattern as tawk.to's snippet). Whoever maintains vegashotelonline.com
-   needs to do this part, or grant you access to.
-2. **Deploy the backend.** `server.js` needs to run somewhere reachable from the
-   internet — Render, Railway, Fly.io, or a small VPS all work for this scale.
-   Set `GEMINI_API_KEY` as an environment variable there (never commit it).
-3. **Point the widget at your deployed backend** instead of `localhost:3000` —
-   update the `fetch('/api/chat', ...)` URL in `widget.js` if the widget and
-   backend aren't served from the same domain.
-
-## 4. Make reservation requests actually reach staff
-
-Right now `notifyStaff()` in `server.js` just logs to the console. Before this
-goes live, wire it to something real:
-- Email: `nodemailer` + a Gmail/SMTP account (vegasluxuryhotel@gmail.com is right there)
-- WhatsApp: WhatsApp Business API, since guests already contact them via WhatsApp
-- Or write to a simple database/spreadsheet staff can check
-
-## 5. When real booking API access exists
-
-If vegashotelonline.com's team gives you access to their real booking system
-(however "Reserve Suite" + sign-in works under the hood), replace `create_lead`
-in `server.js` with a real `create_booking` that calls it directly — same
-pattern as before, only the function body changes. The AI logic, tool
-structure, and chat widget don't need to change at all.
-
-## What's real vs. still a placeholder
-
-| Part | Status |
-|---|---|
-| AI conversation (Claude) | Real |
-| Suite names, prices, amenities, hotel info | Real — pulled from vegashotelonline.com on 2026-08-14 |
-| Availability | Assumed available (site doesn't expose real-time availability publicly) |
-| Booking | Lead capture only — real site requires sign-in, no public booking API |
-| Staff notification | Placeholder (console log) — needs wiring to email/WhatsApp/DB |
-| Cancellation policy | Not published on the site — agent says so honestly rather than guessing |
+<p align="center">Built by <a href="https://github.com/allan818181"><b>Allan Muganyizi Deus</b></a> · Full-Stack &amp; DevOps Engineer · Dar es Salaam, Tanzania<br/>
+<a href="https://www.linkedin.com/in/allan-deus-4b888631a">LinkedIn</a> · <a href="mailto:allandeus014@gmail.com">Email</a></p>
